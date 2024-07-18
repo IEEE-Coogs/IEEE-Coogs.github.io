@@ -1,0 +1,33 @@
+name: Fetch HTML and CSS Files
+
+on:
+  push:
+    branches:
+      - main  # Adjust this based on the branch you want to trigger the action
+
+jobs:
+  fetch-files:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout `.io` repo
+        uses: actions/checkout@v2
+
+      - name: Checkout private repo
+        uses: actions/checkout@v2
+        with:
+          repository: jupiterskies/DevOps-and-frontend  # Replace with your private repo name
+          token: ${{ secrets.PAT_TOKEN }}
+          path: private-repo
+
+      - name: Copy HTML and CSS files
+        run: |
+          mkdir -p public/html-files
+          cp private-repo/path/to/html/files/*.html public/html-files/
+          cp private-repo/path/to/css/files/*.css public/html-files/
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
