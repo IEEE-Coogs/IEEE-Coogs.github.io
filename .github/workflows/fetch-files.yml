@@ -1,4 +1,4 @@
-name: Fetch HTML and CSS Files
+name: Fetch HTML, CSS, and JS Files
 
 on:
   push:
@@ -16,15 +16,16 @@ jobs:
       - name: Checkout private repo
         uses: actions/checkout@v2
         with:
-          repository: jupiterskies/DevOps-and-frontend  # Replace with your private repo name
+          repository: user/private-repo-name  # Replace with your private repo name
           token: ${{ secrets.PAT_TOKEN }}
           path: private-repo
 
-      - name: Copy HTML and CSS files
+      - name: Copy HTML, CSS, and JS files
         run: |
           mkdir -p public/html-files
-          cp private-repo/path/to/html/files/*.html public/html-files/
-          cp private-repo/path/to/css/files/*.css public/html-files/
+          cp DevOps-and-frontend/src/html/*.html public/html-files/
+          cp DevOps-and-frontend/src/css/*.css public/html-files/
+          cp DevOps-and-frontend/src/js/*.js public/html-files/
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
