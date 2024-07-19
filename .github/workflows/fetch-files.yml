@@ -10,25 +10,32 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout `.io` repo
+      - name: Checkout public `.io` repo
         uses: actions/checkout@v2
+        with:
+          path: public-repo
 
       - name: Checkout private repo
         uses: actions/checkout@v2
         with:
           repository: jupiterskies/DevOps-and-frontend  # Replace with your private repo name
-          token: ${{ secrets.PAT_TOKEN }}
-          path: DevOps-and-frontend
+          token: ${{ secrets.PAT_TOKEN }}  # Use your PAT token stored in secrets
+          path: private-repo
+
+      - name: List files in private repo (debugging)
+        run: |
+          echo "Listing files in private-repo:"
+          ls -R private-repo
 
       - name: Copy HTML, CSS, and JS files
         run: |
           mkdir -p public/html-files
-          cp DevOps-and-frontend/src/html/*.html public/html-files/
-          cp DevOps-and-frontend/src/css/*.css public/html-files/
-          cp DevOps-and-frontend/src/js/*.js public/html-files/
+          cp private-repo/src/html/*.html public/html-files/
+          cp private-repo/src/css/*.css public/html-files/
+          cp private-repo/src/js/*.js public/html-files/
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}  # Automatically provided by GitHub Actions
           publish_dir: ./public
