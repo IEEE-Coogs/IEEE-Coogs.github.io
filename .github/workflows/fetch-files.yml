@@ -19,7 +19,7 @@ jobs:
       - name: Checkout private repo
         uses: actions/checkout@v2
         with:
-          repository: jupiterskies/IEEE-Coogs/DevOps-and-frontend.git  # Replace with your private repo name
+          repository: jupiterskies/DevOps-and-frontend.git  # Replace with your private repo name
           token: ${{ secrets.PAT_TOKEN }}  # Use your PAT token stored in secrets
           path: DevOps-and-frontend
           ref: main
