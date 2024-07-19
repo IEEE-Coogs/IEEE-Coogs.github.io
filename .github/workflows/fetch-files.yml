@@ -18,24 +18,29 @@ jobs:
       - name: Checkout private repo
         uses: actions/checkout@v2
         with:
-          repository: jupiterskies/DevOps-and-frontend  # Replace with your private repo name
-          token: ${{ secrets.PAT_TOKEN }}  # Use your PAT token stored in secrets
+          repository: jupiterskies/DevOps-and-frontend  # Your private repo name
+          token: ${{ secrets.PAT_TOKEN }}  # Your PAT token stored in secrets
           path: DevOps-and-frontend
 
       - name: List files in private repo (debugging)
         run: |
-          echo "Listing files in private-repo: "
-          ls -la private-repo
+          echo "Listing files in DevOps-and-frontend:"
+          ls -la DevOps-and-frontend
 
       - name: Copy HTML, CSS, and JS files
         run: |
-          mkdir -p public/html-files
-          cp DevOps-and-frontend.git/src/html/*.html public/html-files/
-          cp DevOps-and-frontend.git/src/css/*.css public/html-files/
-          cp DevOps-and-frontend.git/src/js/*.js public/html-files/
+          mkdir -p IEEE-Coogs.github.io/public/html-files
+          cp DevOps-and-frontend/src/html/*.html IEEE-Coogs.github.io/public/html-files/
+          cp DevOps-and-frontend/src/css/*.css IEEE-Coogs.github.io/public/html-files/
+          cp DevOps-and-frontend/src/js/*.js IEEE-Coogs.github.io/public/html-files/
+
+      - name: List files in public repo (debugging)
+        run: |
+          echo "Listing files in public/html-files:"
+          ls -la IEEE-Coogs.github.io/public/html-files
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}  # Automatically provided by GitHub Actions
-          publish_dir: ./public
+          publish_dir: IEEE-Coogs.github.io/public
