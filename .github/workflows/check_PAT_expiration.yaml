@@ -23,7 +23,7 @@ jobs:
           EMAIL_RECIPIENT: ${{ secrets.EMAIL_RECIPIENT }}
         run: |
           # Placeholder for expiration logic
-          EXPIRATION_DATE="2024-08-01"
+          EXPIRATION_DATE="2024-08-01" # change to 2024-12-15 after the date specified
           NOW=$(date +%Y-%m-%d)
           DAYS_REMAINING=$(( ( $(date -d "$EXPIRATION_DATE" +%s) - $(date -d "$NOW" +%s) ) / 86400 ))
 

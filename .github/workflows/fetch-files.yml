@@ -16,7 +16,7 @@ jobs:
       - name: Checkout private repo
         uses: actions/checkout@v2
         with:
-          repository: user/private-repo-name  # Replace with your private repo name
+          repository: jupiterskies/DevOps-and-frontend  # Replace with your private repo name
           token: ${{ secrets.PAT_TOKEN }}
           path: private-repo
 
