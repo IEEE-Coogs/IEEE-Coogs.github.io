@@ -18,8 +18,8 @@ jobs:
       - name: Checkout private repo
         uses: actions/checkout@v2
         with:
-          repository: jupiterskies/DevOps-and-frontend  # Your private repo name
-          token: ${{ secrets.PAT_TOKEN }}  # Your PAT token stored in secrets
+          repository: jupiterskies/DevOps-and-frontend  # Replace with your private repo name
+          token: ${{ secrets.PAT_TOKEN }}  # Use your PAT token stored in secrets
           path: DevOps-and-frontend
 
       - name: List files in private repo (debugging)
