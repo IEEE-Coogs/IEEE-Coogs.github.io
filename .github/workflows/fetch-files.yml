@@ -24,7 +24,7 @@ jobs:
 
       - name: List files in private repo (debugging)
         run: |
-          echo "Listing files in private-repo:"
+          echo "Listing files in private-repo: "
           ls -la private-repo
 
       - name: Copy HTML, CSS, and JS files
