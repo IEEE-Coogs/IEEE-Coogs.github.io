@@ -1,0 +1,39 @@
+name: Check PAT Expiration
+
+on:
+  schedule:
+    - cron: '0 22 * * 0' # Runs at 10 PM UTC every Sunday (4 PM CST)
+
+jobs:
+  check-expiration:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install msmtp
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y msmtp msmtp-mta
+
+      - name: Check PAT expiration and send email notification
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          EMAIL_RECIPIENT: ${{ secrets.EMAIL_RECIPIENT }}
+        run: |
+          # Placeholder for expiration logic
+          EXPIRATION_DATE="2024-08-01"
+          NOW=$(date +%Y-%m-%d)
+          DAYS_REMAINING=$(( ( $(date -d "$EXPIRATION_DATE" +%s) - $(date -d "$NOW" +%s) ) / 86400 ))
+
+          echo "Days remaining until PAT expiration: $DAYS_REMAINING"
+
+          if [ $DAYS_REMAINING -lt 7 ]; then
+              echo "Token expires soon. Sending email notification."
+              
+              # Send email using msmtp
+              echo -e "Subject: PAT Expiration Notice\n\nYour GitHub PAT is nearing expiration. Please regenerate the token." | msmtp --host=$SMTP_HOST --port=$SMTP_PORT --auth=on --tls=on --tls-starttls=on --user=$SMTP_USER --passwordeval="echo $SMTP_PASSWORD" $EMAIL_RECIPIENT
+          else
+              echo "Token is still valid."
+          fi
