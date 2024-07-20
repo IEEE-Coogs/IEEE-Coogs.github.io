@@ -1,32 +1,22 @@
-# Simple workflow for deploying static content to GitHub Pages
 name: Deploy static content to Pages
 
 on:
-  # Runs on pushes targeting the default branch
   push:
     branches: ["main"]
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-
-  # Scheduled run every 12 hours
   schedule:
-    - cron: '0 */12 * * *'  # This will run the action every 12 hours
+    - cron: '0 */12 * * *'
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
 concurrency:
   group: "pages"
   cancel-in-progress: false
 
 jobs:
-  # Single deploy job since we're just deploying
   deploy:
     environment:
       name: github-pages
@@ -37,13 +27,13 @@ jobs:
         uses: actions/checkout@v2
         with:
           path: IEEE-Coogs.github.io
-          ref: main
+          ref: gh-pages  # Ensure this is the correct branch for deployment
 
       - name: Checkout private repo
         uses: actions/checkout@v2
         with:
-          repository: IEEE-Coogs/DevOps-and-frontend  # Correct path to the private repo within the organization
-          token: ${{ secrets.PAT_TOKEN }}  # Use your PAT token stored in secrets
+          repository: IEEE-Coogs/DevOps-and-frontend
+          token: ${{ secrets.PAT_TOKEN }}
           path: DevOps-and-frontend
           ref: main
 
@@ -61,8 +51,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload the public directory
-          path: 'IEEE-Coogs.github.io/public'
+          path: 'IEEE-Coogs.github.io/html-files'
 
       - name: Deploy to GitHub Pages
         id: deployment
