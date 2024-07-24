@@ -40,7 +40,7 @@ jobs:
         run: |
           cp DevOps-and-frontend/src/html/index.html IEEE-Coogs.github.io/
           cp DevOps-and-frontend/src/css/styles.css IEEE-Coogs.github.io/
-          cp DevOps-and-frontend/src/js/scripts.js IEEE-Coogs.github.io/
+          cp DevOps-and-frontend/src/js/script.js IEEE-Coogs.github.io/
           mkdir -p IEEE-Coogs.github.io/html-files
 
 
