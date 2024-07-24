@@ -1,57 +1,57 @@
-name: Deploy static content to Pages
+# name: Deploy static content to Pages
 
-on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
-  schedule:
-    - cron: '0 */12 * * *'
+# on:
+#   push:
+#     branches:
+#       - main
+#   workflow_dispatch:
+#   schedule:
+#     - cron: '0 */12 * * *'
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+# permissions:
+#   contents: read
+#   pages: write
+#   id-token: write
 
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
+# concurrency:
+#   group: "pages"
+#   cancel-in-progress: false
 
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
+# jobs:
+#   deploy:
+#     runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout public `.io` repo
-        uses: actions/checkout@v2
-        with:
-          path: IEEE-Coogs.github.io
-          ref: main
+#     steps:
+#       - name: Checkout public `.io` repo
+#         uses: actions/checkout@v2
+#         with:
+#           path: IEEE-Coogs.github.io
+#           ref: main
 
-      - name: Checkout private repo
-        uses: actions/checkout@v2
-        with:
-          repository: IEEE-Coogs/DevOps-and-frontend  # Adjust this to the correct path
-          token: ${{ secrets.PAT_TOKEN }}
-          path: DevOps-and-frontend
-          ref: main
+#       - name: Checkout private repo
+#         uses: actions/checkout@v2
+#         with:
+#           repository: IEEE-Coogs/DevOps-and-frontend  # Adjust this to the correct path
+#           token: ${{ secrets.PAT_TOKEN }}
+#           path: DevOps-and-frontend
+#           ref: main
 
-      - name: Copy HTML, CSS, and JS files
-        run: |
-          cp DevOps-and-frontend/src/html/index.html IEEE-Coogs.github.io/
-          mkdir -p IEEE-Coogs.github.io/html-files
-          cp DevOps-and-frontend/src/html/*.html IEEE-Coogs.github.io/html-files/
-          cp DevOps-and-frontend/src/css/*.css IEEE-Coogs.github.io/html-files/
-          cp DevOps-and-frontend/src/js/*.js IEEE-Coogs.github.io/html-files/
+#       - name: Copy HTML, CSS, and JS files
+#         run: |
+#           cp DevOps-and-frontend/src/html/index.html IEEE-Coogs.github.io/
+#           mkdir -p IEEE-Coogs.github.io/html-files
+#           cp DevOps-and-frontend/src/html/*.html IEEE-Coogs.github.io/html-files/
+#           cp DevOps-and-frontend/src/css/*.css IEEE-Coogs.github.io/html-files/
+#           cp DevOps-and-frontend/src/js/*.js IEEE-Coogs.github.io/html-files/
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v3
+#       - name: Setup Pages
+#         uses: actions/configure-pages@v3
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
-        with:
-          path: 'IEEE-Coogs.github.io'
+#       - name: Upload artifact
+#         uses: actions/upload-pages-artifact@v1
+#         with:
+#           path: 'IEEE-Coogs.github.io'
 
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v1
+#       - name: Deploy to GitHub Pages
+#         id: deployment
+#         uses: actions/deploy-pages@v1
