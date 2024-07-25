@@ -23,15 +23,15 @@ jobs:
 
     steps:
       - name: Checkout public `.io` repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
         with:
           path: IEEE-Coogs.github.io
           ref: main
 
       - name: Checkout private repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
         with:
-          repository: IEEE-Coogs/DevOps-and-frontend  # Adjust this to the correct path
+          repository: IEEE-Coogs/DevOps-and-frontend
           token: ${{ secrets.PAT_TOKEN }}
           path: DevOps-and-frontend
           ref: main
@@ -43,9 +43,8 @@ jobs:
           cp DevOps-and-frontend/src/js/script.js IEEE-Coogs.github.io/
           mkdir -p IEEE-Coogs.github.io/html-files
 
-
       - name: Setup Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v2
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
@@ -54,4 +53,6 @@ jobs:
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
