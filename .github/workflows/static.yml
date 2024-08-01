@@ -41,6 +41,7 @@ jobs:
           cp DevOps-and-frontend/src/html/index.html IEEE-Coogs.github.io/
           cp DevOps-and-frontend/src/css/styles.css IEEE-Coogs.github.io/
           cp DevOps-and-frontend/src/js/script.js IEEE-Coogs.github.io/
+          cp -r DevOps-and-frontend/src/assets/ IEEE-Coogs.github.io/assets/
           
 
       - name: Setup Pages
