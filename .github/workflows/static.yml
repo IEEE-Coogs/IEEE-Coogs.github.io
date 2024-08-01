@@ -39,7 +39,7 @@ jobs:
       - name: Copy HTML, CSS, and JS files
         run: |
           cp DevOps-and-frontend/src/html/index.html IEEE-Coogs.github.io/
-          cp DevOps-and-frontend/src/css/styles.css IEEE-Coogs.github.io/
+          cp DevOps-and-frontend/src/css/styles.css IEEE-Coogs.github.io/public/
           cp DevOps-and-frontend/src/js/script.js IEEE-Coogs.github.io/
           
 
