@@ -44,9 +44,9 @@ jobs:
           cp -r DevOps-and-frontend/src/assets/ IEEE-Coogs.github.io/assets/
           cp -r DevOps-and-frontend/src/assets/ IEEE-Coogs.github.io/assets/events-flyers
           
-          cp DevOps-and-frontend/src/info/html/index_info.html IEEE-Coogs.github.io/
-          cp DevOps-and-frontend/src/info/css/styles_info.css IEEE-Coogs.github.io/
-          cp DevOps-and-frontend/src/info/js/script_info.js IEEE-Coogs.github.io/
+          # cp DevOps-and-frontend/src/info/html/index_info.html IEEE-Coogs.github.io/
+          # cp DevOps-and-frontend/src/info/css/styles_info.css IEEE-Coogs.github.io/
+          # cp DevOps-and-frontend/src/info/js/script_info.js IEEE-Coogs.github.io/
 
 
 
