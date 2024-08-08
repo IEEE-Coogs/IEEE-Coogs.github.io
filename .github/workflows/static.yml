@@ -14,15 +14,15 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
-  cancel-in-progress: false
+  group: "pages-${{ github.ref }}"
+  cancel-in-progress: true
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout public `.io` repo
+      - name: Checkout public .io repo
         uses: actions/checkout@v4
         with:
           path: IEEE-Coogs.github.io
@@ -43,7 +43,6 @@ jobs:
           cp DevOps-and-frontend/src/main/js/script.js IEEE-Coogs.github.io/
           cp -r DevOps-and-frontend/src/assets/ IEEE-Coogs.github.io/assets/
           cp -r DevOps-and-frontend/src/assets/ IEEE-Coogs.github.io/assets/events-flyers
-          
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
