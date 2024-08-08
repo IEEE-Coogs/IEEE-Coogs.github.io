@@ -43,6 +43,13 @@ jobs:
           cp DevOps-and-frontend/src/main/js/script.js IEEE-Coogs.github.io/
           cp -r DevOps-and-frontend/src/assets/ IEEE-Coogs.github.io/assets/
           cp -r DevOps-and-frontend/src/assets/ IEEE-Coogs.github.io/assets/events-flyers
+          
+          cp DevOps-and-frontend/src/info/html/info.html IEEE-Coogs.github.io/
+          cp DevOps-and-frontend/src/info/css/info.css IEEE-Coogs.github.io/
+          cp DevOps-and-frontend/src/info/js/info.js IEEE-Coogs.github.io/
+
+
+
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
